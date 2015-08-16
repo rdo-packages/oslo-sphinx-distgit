@@ -11,7 +11,7 @@
 %endif
 
 Name:       python-oslo-sphinx
-Version:    3.0.0
+Version:    3.1.0
 Release:    1%{?dist}
 Summary:    OpenStack Sphinx Extensions and Theme for Python 2
 
@@ -112,6 +112,9 @@ popd
 %endif
 
 %changelog
+* Sun Aug 16 2015 Alan Pevec <alan.pevec@redhat.com> 3.1.0-1
+- Update to upstream 3.1.0
+
 * Thu Jun 25 2015 Alan Pevec <alan.pevec@redhat.com> 3.0.0-1
 - Update to upstream 3.0.0
 
