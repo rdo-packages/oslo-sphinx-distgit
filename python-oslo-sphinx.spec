@@ -12,7 +12,7 @@
 
 Name:       python-oslo-sphinx
 Version:    3.1.0
-Release:    1%{?dist}
+Release:    2%{?dist}
 Summary:    OpenStack Sphinx Extensions and Theme for Python 2
 
 License:    ASL 2.0
@@ -112,6 +112,9 @@ popd
 %endif
 
 %changelog
+* Tue Nov 10 2015 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 3.1.0-2
+- Rebuilt for https://fedoraproject.org/wiki/Changes/python3.5
+
 * Sun Aug 16 2015 Alan Pevec <alan.pevec@redhat.com> 3.1.0-1
 - Update to upstream 3.1.0
 
