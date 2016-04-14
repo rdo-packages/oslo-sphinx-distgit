@@ -1,5 +1,5 @@
-# UUID          Group Name
-6ddfecad023c6f4fa3ac8c4d2583c502ea675a73 	Non-Interactive Users
-11cd1dc1a5039114bd6c0deb0d92e6db772b503f       	oslo-sphinx-distgit-core
-e4139631e2cd5be2a08f5e2ff9a92bf25067b4cd        	oslo-sphinx-distgit-ptl
-global:Registered-Users		Registered Users
+# UUID                                  	Group Name
+#
+11cd1dc1a5039114bd6c0deb0d92e6db772b503f	oslo-sphinx-distgit-core
+e4139631e2cd5be2a08f5e2ff9a92bf25067b4cd	openstack/oslo-sphinx-distgit-ptl
+global:Registered-Users                 	Registered Users
