@@ -8,8 +8,8 @@
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 
 Name:       python-oslo-sphinx
-Version:    XXX
-Release:    XXX
+Version:    4.7.0
+Release:    1%{?dist}
 Summary:    OpenStack Sphinx Extensions
 
 License:    ASL 2.0
@@ -130,3 +130,6 @@ rm -rf {test-,}requirements.txt
 
 
 %changelog
+* Fri Sep 02 2016 Haikel Guemar <hguemar@fedoraproject.org> 4.7.0-1
+- Update to 4.7.0
+
