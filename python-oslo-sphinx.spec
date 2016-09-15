@@ -14,7 +14,7 @@ Summary:    OpenStack Sphinx Extensions
 
 License:    ASL 2.0
 URL:        https://launchpad.net/oslo
-Source0:    http://tarballs.openstack.org/%{sname}/%{sname}-%{version}.tar.gz
+Source0:    https://tarballs.openstack.org/%{sname}/%{sname}-%{version}.tar.gz
 BuildArch:  noarch
 
 %package -n python2-%{pypi_name}
