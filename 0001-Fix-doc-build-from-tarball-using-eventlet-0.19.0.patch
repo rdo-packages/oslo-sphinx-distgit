@@ -1,0 +1,33 @@
+From ef759e96d15562a696b59126089f4ab51e06bd6f Mon Sep 17 00:00:00 2001
+From: Javier Pena <jpena@redhat.com>
+Date: Wed, 24 May 2017 11:26:28 +0200
+Subject: [PATCH] Fix doc build from tarball using eventlet>0.19.0
+
+When subprocess is monkey-patched using eventlet, trying to catch
+subprocess.CalledProcessError exception won't work [1]. This breaks
+doc build from a tarball, so let's catch all exceptions.
+
+[1] https://github.com/eventlet/eventlet/issues/357
+
+Change-Id: Ibcf535c6e4994a67fc3ec71631a81ecb91dd2845
+Closes-Bug: #1693148
+---
+ oslosphinx/__init__.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/oslosphinx/__init__.py b/oslosphinx/__init__.py
+index 773ceb6..f979aa1 100644
+--- a/oslosphinx/__init__.py
++++ b/oslosphinx/__init__.py
+@@ -28,7 +28,7 @@ def _guess_cgit_link():
+         git_remote = subprocess.check_output(
+             ['git', 'config', '--local', '--get', 'remote.origin.url']
+         )
+-    except (OSError, subprocess.CalledProcessError):
++    except Exception:
+         # git is not present or the command failed
+         return None
+     else:
+-- 
+2.9.4
+

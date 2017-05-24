@@ -15,6 +15,8 @@ Summary:    OpenStack Sphinx Extensions
 License:    ASL 2.0
 URL:        https://launchpad.net/oslo
 Source0:    https://tarballs.openstack.org/%{sname}/%{sname}-%{version}.tar.gz
+# FIXME(jpena): https://review.openstack.org/467548
+Patch0001:  0001-Fix-doc-build-from-tarball-using-eventlet-0.19.0.patch
 BuildArch:  noarch
 
 %package -n python2-%{pypi_name}
@@ -87,7 +89,7 @@ The oslo-sphinx library contains Sphinx theme and extensions support used by
 OpenStack.
 
 %prep
-%setup -q -n oslosphinx-%{upstream_version}
+%autosetup -p1 -n oslosphinx-%{upstream_version}
 # Remove bundled egg-info
 rm -rf oslo_sphinx.egg-info
 rm -rf {test-,}requirements.txt
