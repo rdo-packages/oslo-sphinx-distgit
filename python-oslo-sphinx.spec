@@ -8,7 +8,7 @@
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 
 Name:       python-oslo-sphinx
-Version:    4.10.0
+Version:    4.10.1
 Release:    1%{?dist}
 Summary:    OpenStack Sphinx Extensions
 
@@ -130,6 +130,9 @@ rm -rf {test-,}requirements.txt
 
 
 %changelog
+* Wed Jul 05 2017 rdo-trunk <javier.pena@redhat.com> 4.10.1-1
+- Update to 4.10.1
+
 * Tue Feb 07 2017 Alfredo Moralejo <amoralej@redhat.com> 4.10.0-1
 - Update to 4.10.0
 
