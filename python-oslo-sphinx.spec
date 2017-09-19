@@ -62,6 +62,7 @@ BuildRequires: python3-devel
 BuildRequires: python3-setuptools
 BuildRequires: python3-d2to1
 BuildRequires: python3-pbr
+BuildRequires: openstack-macros
 
 Requires:      python3-requests >= 2.5.2
 Requires:      python3-pbr
@@ -81,7 +82,7 @@ BuildRequires: python3-requests >= 2.5.2
 %setup -q -n oslosphinx-%{upstream_version}
 # Remove bundled egg-info
 rm -rf oslo_sphinx.egg-info
-rm -rf {test-,}requirements.txt
+%py_req_cleanup
 
 %build
 %{__python2} setup.py build
