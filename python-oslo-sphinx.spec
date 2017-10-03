@@ -7,6 +7,15 @@
 
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 
+%global common_desc \
+The Oslo project intends to produce a python library containing \
+infrastructure code shared by OpenStack projects. The APIs provided \
+by the project should be high quality, stable, consistent and generally \
+useful. \
+ \
+The oslo-sphinx library contains Sphinx theme and extensions support used by \
+OpenStack.
+
 Name:       python-oslo-sphinx
 Version:    XXX
 Release:    XXX
@@ -40,13 +49,7 @@ Requires:      python-six >= 1.9.0
 BuildRequires: python-requests >= 2.5.2
 
 %description -n python2-%{pypi_name}
-The Oslo project intends to produce a python library containing
-infrastructure code shared by OpenStack projects. The APIs provided
-by the project should be high quality, stable, consistent and generally
-useful.
-
-The oslo-sphinx library contains Sphinx theme and extensions support used by
-OpenStack.
+%{common_desc}
 
 %if 0%{?with_python3}
 %package -n python3-%{pypi_name}
@@ -68,23 +71,11 @@ Requires:      python3-six >= 1.9.0
 BuildRequires: python3-requests >= 2.5.2
 
 %description -n python3-%{pypi_name}
-The Oslo project intends to produce a python library containing
-infrastructure code shared by OpenStack projects. The APIs provided
-by the project should be high quality, stable, consistent and generally
-useful.
-
-The oslo-sphinx library contains Sphinx theme and extensions support used by
-OpenStack.
+%{common_desc}
 %endif
 
 %description
-The Oslo project intends to produce a python library containing
-infrastructure code shared by OpenStack projects. The APIs provided
-by the project should be high quality, stable, consistent and generally
-useful.
-
-The oslo-sphinx library contains Sphinx theme and extensions support used by
-OpenStack.
+%{common_desc}
 
 %prep
 %setup -q -n oslosphinx-%{upstream_version}
