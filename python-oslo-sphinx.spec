@@ -17,8 +17,8 @@ The oslo-sphinx library contains Sphinx theme and extensions support used by \
 OpenStack.
 
 Name:       python-oslo-sphinx
-Version:    XXX
-Release:    XXX
+Version:    4.18.0
+Release:    1%{?dist}
 Summary:    OpenStack Sphinx Extensions
 
 License:    ASL 2.0
@@ -125,3 +125,6 @@ rm -rf {test-,}requirements.txt
 
 
 %changelog
+* Fri Feb 09 2018 RDO <dev@lists.rdoproject.org> 4.18.0-1
+- Update to 4.18.0
+
