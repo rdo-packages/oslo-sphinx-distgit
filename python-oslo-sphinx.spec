@@ -38,7 +38,7 @@ Requires:   python2-setuptools
 BuildRequires: python2-devel
 BuildRequires: python2-setuptools
 BuildRequires: python2-pbr
-%if 0%{?fedora} > 0
+%if 0%{?fedora} > 0 || 0%{?rhel} > 7
 BuildRequires: python2-d2to1
 %else
 BuildRequires: python-d2to1
