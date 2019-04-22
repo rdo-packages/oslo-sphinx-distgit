@@ -125,3 +125,4 @@ rm -rf {test-,}requirements.txt
 
 
 %changelog
+# REMOVEME: error caused by commit http://git.openstack.org/cgit/openstack/oslosphinx/commit/?id=8e194ee518c10ec8e43e6cae5e7d9003cd4e91f3
