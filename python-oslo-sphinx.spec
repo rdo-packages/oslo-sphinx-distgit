@@ -128,3 +128,4 @@ rm -rf {test-,}requirements.txt
 * Fri Mar 08 2019 RDO <dev@lists.rdoproject.org> 4.18.0-1
 - Update to 4.18.0
 
+# REMOVEME: error caused by commit http://git.openstack.org/cgit/openstack/oslosphinx/commit/?id=8e194ee518c10ec8e43e6cae5e7d9003cd4e91f3
