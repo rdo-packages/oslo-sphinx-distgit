@@ -82,7 +82,7 @@ BuildRequires: python3-requests >= 2.14.2
 %{common_desc}
 
 %prep
-%setup -q -n oslosphinx-%{upstream_version}
+%setup -q -n %{sname}-%{upstream_version}
 # Remove bundled egg-info
 rm -rf oslo_sphinx.egg-info
 rm -rf {test-,}requirements.txt
@@ -112,15 +112,15 @@ rm -rf {test-,}requirements.txt
 %files -n python2-%{pypi_name}
 %license LICENSE
 %doc README.rst
-%{python2_sitelib}/oslosphinx
-%{python2_sitelib}/oslosphinx*.egg-info
+%{python2_sitelib}/%{sname}
+%{python2_sitelib}/%{sname}*.egg-info
 
 %if 0%{?with_python3}
 %files -n python3-%{pypi_name}
 %license LICENSE
 %doc README.rst
-%{python3_sitelib}/oslosphinx
-%{python3_sitelib}/oslosphinx*.egg-info
+%{python3_sitelib}/%{sname}
+%{python3_sitelib}/%{sname}*.egg-info
 %endif
 
 
