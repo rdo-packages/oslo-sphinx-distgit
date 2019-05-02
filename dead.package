@@ -1,0 +1,4 @@
+oslosphinx was deprecated upstream
+
+The extension was replaced by openstackdocstheme
+See https://review.opendev.org/#/q/I8c132b41ac325b3ad9c420df583d19b08c18f690
