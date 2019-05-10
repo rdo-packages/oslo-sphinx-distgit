@@ -1,7 +1,7 @@
 %global sname oslosphinx
 %global pypi_name oslo-sphinx
 
-%if 0%{?fedora}
+%if 0%{?fedora} || 0%{?rhel} > 7
 %global with_python3 1
 %endif
 
