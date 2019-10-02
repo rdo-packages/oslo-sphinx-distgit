@@ -70,7 +70,7 @@ rm -rf oslo_sphinx.egg-info
 rm -rf {test-,}requirements.txt
 
 %build
-%{pyver_bin} setup.py build
+%{pyver_build}
 
 %install
 %{pyver_install}
