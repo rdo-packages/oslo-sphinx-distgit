@@ -1,9 +1,16 @@
+# Macros for py2/py3 compatibility
+%if 0%{?fedora} || 0%{?rhel} > 7
+%global pyver %{python3_pkgversion}
+%else
+%global pyver 2
+%endif
+%global pyver_bin python%{pyver}
+%global pyver_sitelib %python%{pyver}_sitelib
+%global pyver_install %py%{pyver}_install
+%global pyver_build %py%{pyver}_build
+# End of macros for py2/py3 compatibility
 %global sname oslosphinx
 %global pypi_name oslo-sphinx
-
-%if 0%{?fedora} || 0%{?rhel} > 7
-%global with_python3 1
-%endif
 
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 
@@ -26,57 +33,32 @@ URL:        https://launchpad.net/oslo
 Source0:    https://tarballs.openstack.org/%{sname}/%{sname}-%{version}.tar.gz
 BuildArch:  noarch
 
-%package -n python2-%{pypi_name}
+%package -n python%{pyver}-%{pypi_name}
 Summary:    OpenStack Sphinx Extensions
-%{?python_provide:%python_provide python2-%{pypi_name}}
-%if 0%{?fedora} < 23
-Obsoletes:  python-%{pypi_name} < %{version}-%{release}
-%endif
+%{?python_provide:%python_provide python%{pyver}-%{pypi_name}}
 
-Requires:   python2-setuptools
 
-BuildRequires: python2-devel
-BuildRequires: python2-setuptools
-BuildRequires: python2-pbr
-%if 0%{?fedora} > 0 || 0%{?rhel} > 7
-BuildRequires: python2-d2to1
-%else
+BuildRequires: python%{pyver}-devel
+BuildRequires: python%{pyver}-setuptools
+BuildRequires: python%{pyver}-pbr
+# tests
+BuildRequires: python%{pyver}-requests >= 2.14.2
+# Handle python2 exception
+%if %{pyver} == 2
 BuildRequires: python-d2to1
+%else
+BuildRequires: python%{pyver}-d2to1
 %endif
 
 Requires:      git
-Requires:      python2-requests >= 2.14.2
-Requires:      python2-pbr
-Requires:      python2-six >= 1.10.0
+Requires:      python%{pyver}-requests >= 2.14.2
+Requires:      python%{pyver}-pbr
+Requires:      python%{pyver}-six >= 1.10.0
+Requires:      python%{pyver}-setuptools
 
-# tests
-BuildRequires: python2-requests >= 2.14.2
 
-%description -n python2-%{pypi_name}
+%description -n python%{pyver}-%{pypi_name}
 %{common_desc}
-
-%if 0%{?with_python3}
-%package -n python3-%{pypi_name}
-Summary:    OpenStack Sphinx Extensions
-%{?python_provide:%python_provide python3-%{pypi_name}}
-
-Requires:   python3-setuptools
-
-BuildRequires: python3-devel
-BuildRequires: python3-setuptools
-BuildRequires: python3-d2to1
-BuildRequires: python3-pbr
-
-Requires:      python3-requests >= 2.14.2
-Requires:      python3-pbr
-Requires:      python3-six >= 1.10.0
-
-# tests
-BuildRequires: python3-requests >= 2.14.2
-
-%description -n python3-%{pypi_name}
-%{common_desc}
-%endif
 
 %description
 %{common_desc}
@@ -88,40 +70,22 @@ rm -rf oslo_sphinx.egg-info
 rm -rf {test-,}requirements.txt
 
 %build
-%{__python2} setup.py build
-%if 0%{?with_python3}
-%{__python3} setup.py build
-%endif
+%{pyver_build}
 
 %install
-%{__python2} setup.py install -O1 --skip-build --root %{buildroot}
-
-%if 0%{?with_python3}
-%{__python3} setup.py install -O1 --skip-build --root %{buildroot}
-%endif
+%{pyver_install}
 
 %check
-%{__python2} setup.py test
-%if 0%{?with_python3}
-%{__python3} setup.py test
-%endif
+%{pyver_bin} setup.py test
 
 ## Fix hidden-file-or-dir warnings
 #rm -fr doc/build/html/.buildinfo
 
-%files -n python2-%{pypi_name}
+%files -n python%{pyver}-%{pypi_name}
 %license LICENSE
 %doc README.rst
-%{python2_sitelib}/%{sname}
-%{python2_sitelib}/%{sname}*.egg-info
-
-%if 0%{?with_python3}
-%files -n python3-%{pypi_name}
-%license LICENSE
-%doc README.rst
-%{python3_sitelib}/%{sname}
-%{python3_sitelib}/%{sname}*.egg-info
-%endif
+%{pyver_sitelib}/%{sname}
+%{pyver_sitelib}/%{sname}*.egg-info
 
 
 %changelog
