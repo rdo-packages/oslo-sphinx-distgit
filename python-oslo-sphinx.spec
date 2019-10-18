@@ -43,12 +43,6 @@ BuildRequires: python%{pyver}-setuptools
 BuildRequires: python%{pyver}-pbr
 # tests
 BuildRequires: python%{pyver}-requests >= 2.14.2
-# Handle python2 exception
-%if %{pyver} == 2
-BuildRequires: python-d2to1
-%else
-BuildRequires: python%{pyver}-d2to1
-%endif
 
 Requires:      git
 Requires:      python%{pyver}-requests >= 2.14.2
