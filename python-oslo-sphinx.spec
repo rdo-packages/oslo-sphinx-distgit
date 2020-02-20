@@ -5,9 +5,9 @@
 %global pyver 2
 %endif
 %global pyver_bin python%{pyver}
-%global pyver_sitelib %python%{pyver}_sitelib
-%global pyver_install %py%{pyver}_install
-%global pyver_build %py%{pyver}_build
+%global pyver_sitelib %{expand:%{python%{pyver}_sitelib}}
+%global pyver_install %{expand:%{py%{pyver}_install}}
+%global pyver_build %{expand:%{py%{pyver}_build}}
 # End of macros for py2/py3 compatibility
 %global sname oslosphinx
 %global pypi_name oslo-sphinx
@@ -24,8 +24,8 @@ The oslo-sphinx library contains Sphinx theme and extensions support used by \
 OpenStack.
 
 Name:       python-oslo-sphinx
-Version:    XXX
-Release:    XXX
+Version:    4.18.0
+Release:    1%{?dist}
 Summary:    OpenStack Sphinx Extensions
 
 License:    ASL 2.0
@@ -83,3 +83,6 @@ rm -rf {test-,}requirements.txt
 
 
 %changelog
+* Fri Mar 08 2019 RDO <dev@lists.rdoproject.org> 4.18.0-1
+- Update to 4.18.0
+
