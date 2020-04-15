@@ -1,14 +1,3 @@
-# Macros for py2/py3 compatibility
-%if 0%{?fedora} || 0%{?rhel} > 7
-%global pyver %{python3_pkgversion}
-%else
-%global pyver 2
-%endif
-%global pyver_bin python%{pyver}
-%global pyver_sitelib %python%{pyver}_sitelib
-%global pyver_install %py%{pyver}_install
-%global pyver_build %py%{pyver}_build
-# End of macros for py2/py3 compatibility
 %global sname oslosphinx
 %global pypi_name oslo-sphinx
 
@@ -33,25 +22,25 @@ URL:        https://launchpad.net/oslo
 Source0:    https://tarballs.openstack.org/%{sname}/%{sname}-%{version}.tar.gz
 BuildArch:  noarch
 
-%package -n python%{pyver}-%{pypi_name}
+%package -n python3-%{pypi_name}
 Summary:    OpenStack Sphinx Extensions
-%{?python_provide:%python_provide python%{pyver}-%{pypi_name}}
+%{?python_provide:%python_provide python3-%{pypi_name}}
 
 
-BuildRequires: python%{pyver}-devel
-BuildRequires: python%{pyver}-setuptools
-BuildRequires: python%{pyver}-pbr
+BuildRequires: python3-devel
+BuildRequires: python3-setuptools
+BuildRequires: python3-pbr
 # tests
-BuildRequires: python%{pyver}-requests >= 2.14.2
+BuildRequires: python3-requests >= 2.14.2
 
 Requires:      git
-Requires:      python%{pyver}-requests >= 2.14.2
-Requires:      python%{pyver}-pbr
-Requires:      python%{pyver}-six >= 1.10.0
-Requires:      python%{pyver}-setuptools
+Requires:      python3-requests >= 2.14.2
+Requires:      python3-pbr
+Requires:      python3-six >= 1.10.0
+Requires:      python3-setuptools
 
 
-%description -n python%{pyver}-%{pypi_name}
+%description -n python3-%{pypi_name}
 %{common_desc}
 
 %description
@@ -64,22 +53,22 @@ rm -rf oslo_sphinx.egg-info
 rm -rf {test-,}requirements.txt
 
 %build
-%{pyver_build}
+%{py3_build}
 
 %install
-%{pyver_install}
+%{py3_install}
 
 %check
-%{pyver_bin} setup.py test
+python3 setup.py test
 
 ## Fix hidden-file-or-dir warnings
 #rm -fr doc/build/html/.buildinfo
 
-%files -n python%{pyver}-%{pypi_name}
+%files -n python3-%{pypi_name}
 %license LICENSE
 %doc README.rst
-%{pyver_sitelib}/%{sname}
-%{pyver_sitelib}/%{sname}*.egg-info
+%{python3_sitelib}/%{sname}
+%{python3_sitelib}/%{sname}*.egg-info
 
 
 %changelog
