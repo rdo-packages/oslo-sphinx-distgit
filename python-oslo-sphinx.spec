@@ -46,7 +46,7 @@ BuildRequires: python3-pbr
 # tests
 BuildRequires: python3-requests >= 2.14.2
 
-Requires:      git
+Requires:      git-core
 Requires:      python3-requests >= 2.14.2
 Requires:      python3-pbr
 Requires:      python3-six >= 1.10.0
