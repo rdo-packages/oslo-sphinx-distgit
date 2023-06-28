@@ -4,6 +4,8 @@
 %global pypi_name oslo-sphinx
 
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
+# we are excluding some BRs from automatic generator
+%global excluded_brs doc8 bandit pre-commit hacking flake8-import-order
 
 %global common_desc \
 The Oslo project intends to produce a python library containing \
@@ -19,7 +21,7 @@ Version:    XXX
 Release:    XXX
 Summary:    OpenStack Sphinx Extensions
 
-License:    ASL 2.0
+License:    Apache-2.0
 URL:        https://launchpad.net/oslo
 Source0:    https://tarballs.openstack.org/%{sname}/%{sname}-%{version}.tar.gz
 # Required for tarball sources verification
@@ -37,21 +39,11 @@ BuildRequires:  openstack-macros
 
 %package -n python3-%{pypi_name}
 Summary:    OpenStack Sphinx Extensions
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
 
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
-BuildRequires: python3-pbr
-# tests
-BuildRequires: python3-requests >= 2.14.2
-
+BuildRequires: pyproject-rpm-macros
 Requires:      git-core
-Requires:      python3-requests >= 2.14.2
-Requires:      python3-pbr
-Requires:      python3-six >= 1.10.0
-Requires:      python3-setuptools
-
 
 %description -n python3-%{pypi_name}
 %{common_desc}
@@ -65,27 +57,39 @@ Requires:      python3-setuptools
 %{gpgverify}  --keyring=%{SOURCE102} --signature=%{SOURCE101} --data=%{SOURCE0}
 %endif
 %setup -q -n %{sname}-%{upstream_version}
-# Remove bundled egg-info
-rm -rf oslo_sphinx.egg-info
-rm -rf {test-,}requirements.txt
+
+sed -i /^[[:space:]]*-c{env:.*_CONSTRAINTS_FILE.*/d tox.ini
+sed -i "s/^deps = -c{env:.*_CONSTRAINTS_FILE.*/deps =/" tox.ini
+sed -i /^minversion.*/d tox.ini
+sed -i /^requires.*virtualenv.*/d tox.ini
+echo "recursive-include oslosphinx/theme *" > MANIFEST.in
+
+# Exclude some bad-known BRs
+for pkg in %{excluded_brs};do
+  for reqfile in doc/requirements.txt test-requirements.txt; do
+    if [ -f $reqfile ]; then
+      sed -i /^${pkg}.*/d $reqfile
+    fi
+  done
+done
+
+%generate_buildrequires
+%pyproject_buildrequires -t -e %{default_toxenv}
 
 %build
-%{py3_build}
+%pyproject_wheel
 
 %install
-%{py3_install}
+%pyproject_install
 
 %check
-python3 setup.py test
-
-## Fix hidden-file-or-dir warnings
-#rm -fr doc/build/html/.buildinfo
+%tox -e %{default_toxenv}
 
 %files -n python3-%{pypi_name}
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/%{sname}
-%{python3_sitelib}/%{sname}*.egg-info
+%{python3_sitelib}/%{sname}*.dist-info
 
 
 %changelog
