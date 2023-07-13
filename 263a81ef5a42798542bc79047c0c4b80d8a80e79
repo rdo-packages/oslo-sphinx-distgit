@@ -16,6 +16,24 @@
       "message": "needs https://review.rdoproject.org/r/c/config/+/49243",
       "revId": "263a81ef5a42798542bc79047c0c4b80d8a80e79",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "685322bd_e3b7aecc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 635
+      },
+      "writtenOn": "2023-07-13T14:07:18Z",
+      "side": 1,
+      "message": "oslo-sphinx is still required by some packages ..\n\nLast metadata expiration check: 1:41:33 ago on Thu 13 Jul 2023 02:25:29 PM CEST.\nopenstack-cloudkitty-0:18.1.0-0.20230710150328.b460fd9.el9.src\nopenstack-rally-0:3.4.0-0.20230711092741.e8613ff.el9.src\nopenstack-sahara-ui-0:18.1.0-0.20230410191854.c830376.el9.src\nopenstack-trove-ui-0:20.1.0-0.20230625062347.6bc43e2.el9.src\npython-networking-bigswitch-2:12.0.3-0.20230712094734.96cf540.el9.src\npython-networking-mlnx-0:16.0.1-0.20220809083837.0a69b97.el9.src\npython-novajoin-0:1.3.0-0.20210922175419.265146e.el9.src\npython-scciclient-0:0.12.2-0.20220729090847.5627307.el9.src",
+      "parentUuid": "d22c244a_83afb9bf",
+      "revId": "263a81ef5a42798542bc79047c0c4b80d8a80e79",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
