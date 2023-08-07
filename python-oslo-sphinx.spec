@@ -56,13 +56,12 @@ Requires:      git-core
 %if 0%{?sources_gpg} == 1
 %{gpgverify}  --keyring=%{SOURCE102} --signature=%{SOURCE101} --data=%{SOURCE0}
 %endif
-%setup -q -n %{sname}-%{upstream_version}
+%autosetup -n %{sname}-%{upstream_version} -S git
 
 sed -i /^[[:space:]]*-c{env:.*_CONSTRAINTS_FILE.*/d tox.ini
 sed -i "s/^deps = -c{env:.*_CONSTRAINTS_FILE.*/deps =/" tox.ini
 sed -i /^minversion.*/d tox.ini
 sed -i /^requires.*virtualenv.*/d tox.ini
-echo "recursive-include oslosphinx/theme *" > MANIFEST.in
 
 # Exclude some bad-known BRs
 for pkg in %{excluded_brs};do
